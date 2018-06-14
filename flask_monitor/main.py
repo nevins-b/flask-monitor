@@ -24,28 +24,11 @@ class Event(object):
         mydict['timing']['delta'] = self.timing
         mydict['timing']['start'] = self.request._stats_start_event
         mydict['timing']['asctime'] = asctime(gmtime(self.request._stats_start_event))
-        # manage flask
-        mydict['flask'] = {}
-        mydict['flask']['secret_key'] = current_app.config['SECRET_KEY']
-        mydict['flask']['server_name'] = current_app.config['SERVER_NAME']
-        mydict['flask']['session_cookie_name'] = current_app.config['SESSION_COOKIE_NAME']
-        mydict['flask']['session_cookie_domain'] = current_app.config['SESSION_COOKIE_DOMAIN']
-        mydict['flask']['session_cookie_path'] = current_app.config['SESSION_COOKIE_PATH']
-        mydict['flask']['session_cookie_httponly'] = current_app.config['SESSION_COOKIE_HTTPONLY']
-        mydict['flask']['session_cookie_secure'] = current_app.config['SESSION_COOKIE_SECURE']
-        mydict['flask']['session_refresh_each_request'] = current_app.config['SESSION_REFRESH_EACH_REQUEST']
         # manage request
         mydict['request'] = {}
         mydict['request']['url'] = request.url
-        mydict['request']['args'] = {arg: request.args.get(arg) for arg in request.args}
-        mydict['request']['view_args'] = request.view_args
         mydict['request']['path'] = request.path
         mydict['request']['method'] = request.method
-        mydict['request']['remote_addr'] = request.remote_addr
-        try:
-            mydict['request']['rule'] = request.url_rule.rule
-        except:
-            mydict['request']['rule'] = ''
         #manage response
         mydict['response'] = {}
         mydict['response']['status_code'] = self.response.status_code
