@@ -19,11 +19,9 @@ class Event(object):
     @property
     def _dict(self):
         mydict = {}
-        # manage timing
-        mydict['timing'] = {}
-        mydict['timing']['delta'] = self.timing
-        mydict['timing']['start'] = self.request._stats_start_event
-        mydict['timing']['asctime'] = asctime(gmtime(self.request._stats_start_event))
+        # manage flask
+        mydict['flask'] = {}
+        mydict['flask']['server_name'] = current_app.config['SERVER_NAME']
         # manage request
         mydict['request'] = {}
         mydict['request']['url'] = request.url
@@ -32,7 +30,6 @@ class Event(object):
         #manage response
         mydict['response'] = {}
         mydict['response']['status_code'] = self.response.status_code
-        mydict['response']['headers'] = { i:j for i,j in self.response.headers}
         return mydict                
   
     @property
