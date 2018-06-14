@@ -8,7 +8,7 @@ from influxdb.client import InfluxDBClientError
 
 class ObserverInfluxdb(ObserverMetrics):
 
-    def __init__(self, host, port, user, password, db, ssl=False, verify_ssl=False, measure='flask', *args, **kw):
+    def __init__(self, host=u'localhost', port=8086, user=u'root', password=u'root', db=None, ssl=False, verify_ssl=False, measure='flask', *args, **kw):
         ObserverMetrics.__init__(self, *args, **kw)
         self._data = [
             {
