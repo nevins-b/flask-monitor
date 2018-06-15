@@ -11,10 +11,10 @@ def everyTrue(event):
 
 class Event(object):
     
-    def __init__(self, response, request, timing):
+    def __init__(self, response, request, value):
         self.response = response
         self.request = request
-        self.timing = timing
+        self.value = value
     
     @property
     def _dict(self):

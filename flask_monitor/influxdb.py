@@ -33,7 +33,7 @@ class ObserverInfluxdb(ObserverMetrics):
         try:
             data = self._data
             data[0]['tags'] = event.dict
-            data[0]['fields'] = {"value": event.timing}
+            data[0]['fields'] = {"value": event.value}
             self.db.write_points(data)
         except InfluxDBClientError as e:
             self.logger.critical("Error InfluxDB '%s'" % str(e))

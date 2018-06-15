@@ -25,7 +25,7 @@ class ObserverStatsd(ObserverMetrics):
 
     def action(self, event):
         try:
-            self.client.timing(self._format.format(**event.flat), event.timing)
+            self.client.timing(self._format.format(**event.flat), event.value)
         except Exception as e:
             self.logger.critical("Error Unknow on Statsd '%s'" % str(e))
             
